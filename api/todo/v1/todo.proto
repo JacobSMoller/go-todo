@@ -24,6 +24,7 @@ message Todo {
 
 	// @inject_tag: sql:"type:timestamptz"
 	google.protobuf.Timestamp updated_at = 6;
+	string foo = 7;
 }
 
 message CreateTodoRequest {
