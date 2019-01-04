@@ -5,8 +5,7 @@ import (
 
 	todo "github.com/JacobSMoller/go-todo/api/todo/v1"
 	"github.com/go-pg/pg"
-	"github.com/gogo/protobuf/types"
-	uuid "github.com/satori/go.uuid"
+	// "github.com/gogo/protobuf/types"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 )
@@ -19,7 +18,6 @@ type Service struct {
 
 // CreateTodo creates a todo given a description
 func (s Service) CreateTodo(ctx context.Context, req *todo.CreateTodoRequest) (*todo.CreateTodoResponse, error) {
-	req.Item.Id = uuid.NewV4().String()
 	err := s.DB.Insert(req.Item)
 	if err != nil {
 		return nil, grpc.Errorf(codes.Internal, "Could not insert item into the database: %s", err)
