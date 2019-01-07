@@ -9,6 +9,7 @@ require (
 	github.com/onsi/ginkgo v1.7.0 // indirect
 	github.com/onsi/gomega v1.4.3 // indirect
 	golang.org/x/net v0.0.0-20181220203305-927f97764cc3
+	google.golang.org/appengine v1.4.0
 	google.golang.org/genproto v0.0.0-20180817151627-c66870c02cf8 // indirect
 	google.golang.org/grpc v1.14.0
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect

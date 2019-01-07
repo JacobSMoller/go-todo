@@ -2,6 +2,7 @@ package todo
 
 import (
 	"context"
+	"log"
 
 	todo "github.com/JacobSMoller/go-todo/api/todo/v1"
 	"github.com/go-pg/pg"
@@ -26,9 +27,10 @@ func (s Service) CreateTodo(ctx context.Context, req *todo.CreateTodoRequest) (*
 }
 
 func (s Service) DeleteTodo(ctx context.Context, req *todo.DeleteTodoRequest) (*todo.DeleteTodoResponse, error) {
+	log.Print("Foobar")
 	err := s.DB.Delete(&todo.Todo{Id: req.Id})
 	if err != nil {
-		return nil, grpc.Errorf(codes.Internal, "Could not delffdfete the item: %s", err)
+		return nil, grpc.Errorf(codes.Internal, "Could not deleteee the item: %s", err)
 	}
 	return &todo.DeleteTodoResponse{}, nil
 }
