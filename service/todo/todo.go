@@ -18,7 +18,7 @@ type Service struct {
 
 // CreateTodo creates a todo given a description
 func (s Service) CreateTodo(ctx context.Context, req *todo.CreateTodoRequest) (*todo.CreateTodoResponse, error) {
-	err := s.DB.Create(req.Item)
+	err := s.DB.Exec("INSERT INTO todo", req.Item)
 	if err != nil {
 		return nil, grpc.Errorf(codes.Internal, "Could not insert item into the database: %s", err)
 	}
