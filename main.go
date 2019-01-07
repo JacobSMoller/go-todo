@@ -47,9 +47,6 @@ func main() {
 		"postgres",
 		"host=localhost port=5432 user=postgres dbname=todo password=mysecretpassword sslmode=disable")
 	defer db.Close()
-	db.SingularTable(true)
-	db.AutoMigrate(&pb.Todo{})
-	db.AutoMigrate(&pb.Owner{})
 	// Setup a grpc server
 	server := grpc.NewServer()
 	pb.RegisterTodoServiceServer(server, &todo.Service{DB: db})
