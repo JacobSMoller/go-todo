@@ -4,8 +4,6 @@ package todo.v1;
 
 option go_package = "todo";
 
-import "google/protobuf/timestamp.proto";
-
 service TodoService {
 	rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse);
 	rpc DeleteTodo(DeleteTodoRequest) returns (DeleteTodoResponse);
@@ -21,10 +19,10 @@ message Todo {
 	bool completed = 4;
 
 	// @inject_tag: gorm:"type:timestamptz;default:now()"
-	google.protobuf.Timestamp created_at = 5;
+	uint64 created_at = 5;
 
 	// @inject_tag: gorm:"type:timestamptz"
-	google.protobuf.Timestamp updated_at = 6;
+	uint64 updated_at = 6;
 }
 
 message Owner {
