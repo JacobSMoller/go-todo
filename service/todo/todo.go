@@ -5,7 +5,7 @@ import (
 
 	todo "github.com/JacobSMoller/go-todo/api/todo/v1"
 	"github.com/go-pg/pg"
-	// "github.com/gogo/protobuf/types"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 )
@@ -23,4 +23,12 @@ func (s Service) CreateTodo(ctx context.Context, req *todo.CreateTodoRequest) (*
 		return nil, grpc.Errorf(codes.Internal, "Could not insert item into the database: %s", err)
 	}
 	return &todo.CreateTodoResponse{Id: req.Item.Id}, nil
+}
+
+func (s Service) DeleteTodo(ctx context.Context, req *todo.DeleteTodoRequest) (*todo.DeleteTodoResponse, error) {
+	err := s.DB.Delete(req.Id)
+	if err != nil {
+		return nil, grpc.Errorf(codes.Internal, "Could not delete the item: %s", err)
+	}
+	return &todo.DeleteTodoResponse{}, nil
 }
