@@ -43,7 +43,7 @@ func (m *Todo) Reset()         { *m = Todo{} }
 func (m *Todo) String() string { return proto.CompactTextString(m) }
 func (*Todo) ProtoMessage()    {}
 func (*Todo) Descriptor() ([]byte, []int) {
-	return fileDescriptor_todo_5f920ec37555f89b, []int{0}
+	return fileDescriptor_todo_5f20dee3c81a262e, []int{0}
 }
 func (m *Todo) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Todo.Unmarshal(m, b)
@@ -105,6 +105,60 @@ func (m *Todo) GetUpdatedAt() *timestamp.Timestamp {
 	return nil
 }
 
+type Owner struct {
+	Id                   uint64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Fistname             string   `protobuf:"bytes,2,opt,name=fistname,proto3" json:"fistname,omitempty"`
+	Lastname             string   `protobuf:"bytes,3,opt,name=lastname,proto3" json:"lastname,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *Owner) Reset()         { *m = Owner{} }
+func (m *Owner) String() string { return proto.CompactTextString(m) }
+func (*Owner) ProtoMessage()    {}
+func (*Owner) Descriptor() ([]byte, []int) {
+	return fileDescriptor_todo_5f20dee3c81a262e, []int{1}
+}
+func (m *Owner) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Owner.Unmarshal(m, b)
+}
+func (m *Owner) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Owner.Marshal(b, m, deterministic)
+}
+func (dst *Owner) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Owner.Merge(dst, src)
+}
+func (m *Owner) XXX_Size() int {
+	return xxx_messageInfo_Owner.Size(m)
+}
+func (m *Owner) XXX_DiscardUnknown() {
+	xxx_messageInfo_Owner.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Owner proto.InternalMessageInfo
+
+func (m *Owner) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *Owner) GetFistname() string {
+	if m != nil {
+		return m.Fistname
+	}
+	return ""
+}
+
+func (m *Owner) GetLastname() string {
+	if m != nil {
+		return m.Lastname
+	}
+	return ""
+}
+
 type CreateTodoRequest struct {
 	Item                 *Todo    `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -116,7 +170,7 @@ func (m *CreateTodoRequest) Reset()         { *m = CreateTodoRequest{} }
 func (m *CreateTodoRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateTodoRequest) ProtoMessage()    {}
 func (*CreateTodoRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_todo_5f920ec37555f89b, []int{1}
+	return fileDescriptor_todo_5f20dee3c81a262e, []int{2}
 }
 func (m *CreateTodoRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateTodoRequest.Unmarshal(m, b)
@@ -154,7 +208,7 @@ func (m *CreateTodoResponse) Reset()         { *m = CreateTodoResponse{} }
 func (m *CreateTodoResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateTodoResponse) ProtoMessage()    {}
 func (*CreateTodoResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_todo_5f920ec37555f89b, []int{2}
+	return fileDescriptor_todo_5f20dee3c81a262e, []int{3}
 }
 func (m *CreateTodoResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_CreateTodoResponse.Unmarshal(m, b)
@@ -192,7 +246,7 @@ func (m *DeleteTodoRequest) Reset()         { *m = DeleteTodoRequest{} }
 func (m *DeleteTodoRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteTodoRequest) ProtoMessage()    {}
 func (*DeleteTodoRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_todo_5f920ec37555f89b, []int{3}
+	return fileDescriptor_todo_5f20dee3c81a262e, []int{4}
 }
 func (m *DeleteTodoRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_DeleteTodoRequest.Unmarshal(m, b)
@@ -229,7 +283,7 @@ func (m *DeleteTodoResponse) Reset()         { *m = DeleteTodoResponse{} }
 func (m *DeleteTodoResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteTodoResponse) ProtoMessage()    {}
 func (*DeleteTodoResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_todo_5f920ec37555f89b, []int{4}
+	return fileDescriptor_todo_5f20dee3c81a262e, []int{5}
 }
 func (m *DeleteTodoResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_DeleteTodoResponse.Unmarshal(m, b)
@@ -249,12 +303,91 @@ func (m *DeleteTodoResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DeleteTodoResponse proto.InternalMessageInfo
 
+type CreateOwnerRequest struct {
+	Owner                *Owner   `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateOwnerRequest) Reset()         { *m = CreateOwnerRequest{} }
+func (m *CreateOwnerRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateOwnerRequest) ProtoMessage()    {}
+func (*CreateOwnerRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_todo_5f20dee3c81a262e, []int{6}
+}
+func (m *CreateOwnerRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateOwnerRequest.Unmarshal(m, b)
+}
+func (m *CreateOwnerRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateOwnerRequest.Marshal(b, m, deterministic)
+}
+func (dst *CreateOwnerRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateOwnerRequest.Merge(dst, src)
+}
+func (m *CreateOwnerRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateOwnerRequest.Size(m)
+}
+func (m *CreateOwnerRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateOwnerRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateOwnerRequest proto.InternalMessageInfo
+
+func (m *CreateOwnerRequest) GetOwner() *Owner {
+	if m != nil {
+		return m.Owner
+	}
+	return nil
+}
+
+type CreateOwnerResponse struct {
+	Id                   uint64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateOwnerResponse) Reset()         { *m = CreateOwnerResponse{} }
+func (m *CreateOwnerResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateOwnerResponse) ProtoMessage()    {}
+func (*CreateOwnerResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_todo_5f20dee3c81a262e, []int{7}
+}
+func (m *CreateOwnerResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateOwnerResponse.Unmarshal(m, b)
+}
+func (m *CreateOwnerResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateOwnerResponse.Marshal(b, m, deterministic)
+}
+func (dst *CreateOwnerResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateOwnerResponse.Merge(dst, src)
+}
+func (m *CreateOwnerResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateOwnerResponse.Size(m)
+}
+func (m *CreateOwnerResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateOwnerResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateOwnerResponse proto.InternalMessageInfo
+
+func (m *CreateOwnerResponse) GetId() uint64 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
 func init() {
 	proto.RegisterType((*Todo)(nil), "todo.v1.Todo")
+	proto.RegisterType((*Owner)(nil), "todo.v1.Owner")
 	proto.RegisterType((*CreateTodoRequest)(nil), "todo.v1.CreateTodoRequest")
 	proto.RegisterType((*CreateTodoResponse)(nil), "todo.v1.CreateTodoResponse")
 	proto.RegisterType((*DeleteTodoRequest)(nil), "todo.v1.DeleteTodoRequest")
 	proto.RegisterType((*DeleteTodoResponse)(nil), "todo.v1.DeleteTodoResponse")
+	proto.RegisterType((*CreateOwnerRequest)(nil), "todo.v1.CreateOwnerRequest")
+	proto.RegisterType((*CreateOwnerResponse)(nil), "todo.v1.CreateOwnerResponse")
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -271,6 +404,7 @@ const _ = grpc.SupportPackageIsVersion4
 type TodoServiceClient interface {
 	CreateTodo(ctx context.Context, in *CreateTodoRequest, opts ...grpc.CallOption) (*CreateTodoResponse, error)
 	DeleteTodo(ctx context.Context, in *DeleteTodoRequest, opts ...grpc.CallOption) (*DeleteTodoResponse, error)
+	CreateOwner(ctx context.Context, in *CreateOwnerRequest, opts ...grpc.CallOption) (*CreateOwnerResponse, error)
 }
 
 type todoServiceClient struct {
@@ -299,10 +433,20 @@ func (c *todoServiceClient) DeleteTodo(ctx context.Context, in *DeleteTodoReques
 	return out, nil
 }
 
+func (c *todoServiceClient) CreateOwner(ctx context.Context, in *CreateOwnerRequest, opts ...grpc.CallOption) (*CreateOwnerResponse, error) {
+	out := new(CreateOwnerResponse)
+	err := c.cc.Invoke(ctx, "/todo.v1.TodoService/CreateOwner", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TodoServiceServer is the server API for TodoService service.
 type TodoServiceServer interface {
 	CreateTodo(context.Context, *CreateTodoRequest) (*CreateTodoResponse, error)
 	DeleteTodo(context.Context, *DeleteTodoRequest) (*DeleteTodoResponse, error)
+	CreateOwner(context.Context, *CreateOwnerRequest) (*CreateOwnerResponse, error)
 }
 
 func RegisterTodoServiceServer(s *grpc.Server, srv TodoServiceServer) {
@@ -345,6 +489,24 @@ func _TodoService_DeleteTodo_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TodoService_CreateOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateOwnerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TodoServiceServer).CreateOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/todo.v1.TodoService/CreateOwner",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TodoServiceServer).CreateOwner(ctx, req.(*CreateOwnerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _TodoService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "todo.v1.TodoService",
 	HandlerType: (*TodoServiceServer)(nil),
@@ -357,34 +519,43 @@ var _TodoService_serviceDesc = grpc.ServiceDesc{
 			MethodName: "DeleteTodo",
 			Handler:    _TodoService_DeleteTodo_Handler,
 		},
+		{
+			MethodName: "CreateOwner",
+			Handler:    _TodoService_CreateOwner_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "api/todo/v1/todo.proto",
 }
 
-func init() { proto.RegisterFile("api/todo/v1/todo.proto", fileDescriptor_todo_5f920ec37555f89b) }
+func init() { proto.RegisterFile("api/todo/v1/todo.proto", fileDescriptor_todo_5f20dee3c81a262e) }
 
-var fileDescriptor_todo_5f920ec37555f89b = []byte{
-	// 327 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x90, 0xc1, 0x4a, 0xfb, 0x40,
-	0x10, 0xc6, 0xd9, 0xfe, 0xd3, 0xfe, 0xed, 0x04, 0x85, 0x2e, 0x45, 0x42, 0x14, 0x8c, 0xd1, 0x43,
-	0x4e, 0x09, 0xad, 0x20, 0x78, 0xac, 0xda, 0x17, 0x88, 0x3d, 0x79, 0x91, 0x34, 0x3b, 0x96, 0x85,
-	0xa6, 0xbb, 0x26, 0xd3, 0xbe, 0x8c, 0x6f, 0xe7, 0x93, 0x48, 0x36, 0xa9, 0x5d, 0x1a, 0xc1, 0x53,
-	0xb2, 0x33, 0xdf, 0xf7, 0xcd, 0x6f, 0x06, 0xce, 0x33, 0x2d, 0x13, 0x52, 0x42, 0x25, 0xbb, 0x89,
-	0xf9, 0xc6, 0xba, 0x54, 0xa4, 0xf8, 0x7f, 0xf3, 0xbf, 0x9b, 0xf8, 0x57, 0x2b, 0xa5, 0x56, 0x6b,
-	0x4c, 0x4c, 0x79, 0xb9, 0x7d, 0x4f, 0x48, 0x16, 0x58, 0x51, 0x56, 0xe8, 0x46, 0x19, 0x7e, 0x31,
-	0x70, 0x16, 0x4a, 0x28, 0x7e, 0x06, 0x3d, 0x29, 0x3c, 0x16, 0xb0, 0xc8, 0x49, 0x7b, 0x52, 0xf0,
-	0x31, 0xf4, 0x49, 0xd2, 0x1a, 0xbd, 0x5e, 0xc0, 0xa2, 0x61, 0xda, 0x3c, 0x78, 0x00, 0xae, 0xc0,
-	0x2a, 0x2f, 0xa5, 0x26, 0xa9, 0x36, 0xde, 0x3f, 0xd3, 0xb3, 0x4b, 0xfc, 0x12, 0x86, 0xb9, 0x2a,
-	0xf4, 0x1a, 0x09, 0x85, 0xe7, 0x04, 0x2c, 0x3a, 0x49, 0x0f, 0x05, 0xfe, 0x00, 0x90, 0x97, 0x98,
-	0x11, 0x8a, 0xb7, 0x8c, 0xbc, 0x7e, 0xc0, 0x22, 0x77, 0xea, 0xc7, 0x0d, 0x64, 0xbc, 0x87, 0x8c,
-	0x17, 0x7b, 0xc8, 0x74, 0xd8, 0xaa, 0x67, 0x54, 0x5b, 0xb7, 0x5a, 0xec, 0xad, 0x83, 0xbf, 0xad,
-	0xad, 0x7a, 0x46, 0xe1, 0x3d, 0x8c, 0x9e, 0x4c, 0x4e, 0xbd, 0x69, 0x8a, 0x1f, 0x5b, 0xac, 0x88,
-	0x5f, 0x83, 0x23, 0x09, 0x0b, 0xb3, 0xb2, 0x3b, 0x3d, 0x8d, 0xdb, 0x93, 0xc5, 0x46, 0x63, 0x5a,
-	0xe1, 0x2d, 0x70, 0xdb, 0x57, 0x69, 0xb5, 0xa9, 0xf0, 0xf8, 0x52, 0xe1, 0x0d, 0x8c, 0x9e, 0xb1,
-	0x5e, 0xcf, 0x4e, 0x3f, 0x16, 0x8d, 0x81, 0xdb, 0xa2, 0x26, 0x6a, 0xfa, 0xc9, 0xc0, 0xad, 0x0b,
-	0x2f, 0x58, 0xee, 0x64, 0x8e, 0x7c, 0x0e, 0x70, 0x18, 0xc8, 0xfd, 0x1f, 0xa6, 0x0e, 0xbd, 0x7f,
-	0xf1, 0x6b, 0xaf, 0x25, 0x9c, 0x03, 0x1c, 0x86, 0x59, 0x31, 0x1d, 0x4c, 0x2b, 0xa6, 0x4b, 0xf7,
-	0x38, 0x78, 0x75, 0xea, 0xee, 0x72, 0x60, 0xae, 0x7b, 0xf7, 0x1d, 0x00, 0x00, 0xff, 0xff, 0xae,
-	0x36, 0x97, 0x90, 0x6e, 0x02, 0x00, 0x00,
+var fileDescriptor_todo_5f20dee3c81a262e = []byte{
+	// 401 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x52, 0x51, 0x0b, 0x93, 0x50,
+	0x14, 0xc6, 0xa5, 0x6b, 0x3b, 0xd2, 0x60, 0xb7, 0x11, 0x62, 0x83, 0xcc, 0x16, 0xf8, 0xa4, 0x6c,
+	0x41, 0x50, 0x6f, 0xab, 0x06, 0xbd, 0x0d, 0x6c, 0x4f, 0xbd, 0x84, 0xf3, 0x9e, 0x8d, 0x0b, 0xea,
+	0x35, 0xbd, 0x5b, 0xff, 0x37, 0xe8, 0x7f, 0x84, 0xf7, 0xaa, 0xbb, 0xcd, 0x41, 0x4f, 0x7a, 0xce,
+	0xf7, 0x9d, 0xef, 0x7c, 0xdf, 0x51, 0x78, 0x91, 0x94, 0x2c, 0x12, 0x9c, 0xf2, 0xe8, 0xba, 0x96,
+	0xcf, 0xb0, 0xac, 0xb8, 0xe0, 0xe4, 0xa9, 0x7c, 0xbf, 0xae, 0xdd, 0x57, 0x67, 0xce, 0xcf, 0x19,
+	0x46, 0xb2, 0x7d, 0xbc, 0x9c, 0x22, 0xc1, 0x72, 0xac, 0x45, 0x92, 0x97, 0x8a, 0xe9, 0xff, 0x36,
+	0xc0, 0x3c, 0x70, 0xca, 0xc9, 0x0c, 0x46, 0x8c, 0x3a, 0x86, 0x67, 0x04, 0x66, 0x3c, 0x62, 0x94,
+	0x2c, 0xc0, 0x12, 0x4c, 0x64, 0xe8, 0x8c, 0x3c, 0x23, 0x98, 0xc6, 0xaa, 0x20, 0x1e, 0xd8, 0x14,
+	0xeb, 0xb4, 0x62, 0xa5, 0x60, 0xbc, 0x70, 0x9e, 0x48, 0x4c, 0x6f, 0x91, 0x25, 0x4c, 0x53, 0x9e,
+	0x97, 0x19, 0x0a, 0xa4, 0x8e, 0xe9, 0x19, 0xc1, 0x24, 0xbe, 0x35, 0xc8, 0x07, 0x80, 0xb4, 0xc2,
+	0x44, 0x20, 0xfd, 0x91, 0x08, 0xc7, 0xf2, 0x8c, 0xc0, 0xde, 0xb8, 0xa1, 0x32, 0x19, 0x76, 0x26,
+	0xc3, 0x43, 0x67, 0x32, 0x9e, 0xb6, 0xec, 0xad, 0x68, 0x46, 0x2f, 0x25, 0xed, 0x46, 0xc7, 0xff,
+	0x1f, 0x6d, 0xd9, 0x5b, 0xe1, 0xef, 0xc1, 0xda, 0xff, 0x2a, 0xb0, 0x1a, 0x84, 0x74, 0x61, 0x72,
+	0x62, 0xb5, 0x28, 0x92, 0xbc, 0xcb, 0xd9, 0xd7, 0x0d, 0x96, 0x25, 0x2d, 0xa6, 0x72, 0xf6, 0xb5,
+	0xff, 0x1e, 0xe6, 0x9f, 0xa5, 0xb1, 0xe6, 0x74, 0x31, 0xfe, 0xbc, 0x60, 0x2d, 0xc8, 0x6b, 0x30,
+	0x99, 0xc0, 0x5c, 0xca, 0xdb, 0x9b, 0x67, 0x61, 0xfb, 0x0d, 0x42, 0xc9, 0x91, 0x90, 0xbf, 0x02,
+	0xa2, 0xcf, 0xd5, 0x25, 0x2f, 0x6a, 0xbc, 0x77, 0xe5, 0xbf, 0x81, 0xf9, 0x17, 0x6c, 0xee, 0xa5,
+	0xab, 0xdf, 0x93, 0x16, 0x40, 0x74, 0x92, 0x92, 0xf2, 0x3f, 0x76, 0x0b, 0x64, 0xde, 0x6e, 0x76,
+	0x05, 0x16, 0x6f, 0xea, 0xd6, 0xda, 0xac, 0xb7, 0xa6, 0x58, 0x0a, 0xf4, 0xdf, 0xc2, 0xf3, 0x7f,
+	0x66, 0x1f, 0xbb, 0xdb, 0xfc, 0x31, 0xc0, 0x6e, 0x76, 0x7e, 0xc3, 0xea, 0xca, 0x52, 0x24, 0x3b,
+	0x80, 0x5b, 0x26, 0xe2, 0xf6, 0xda, 0x83, 0x03, 0xb9, 0x2f, 0x1f, 0x62, 0xed, 0x9a, 0x1d, 0xc0,
+	0x2d, 0x8f, 0x26, 0x33, 0xb8, 0x84, 0x26, 0x33, 0x3c, 0x00, 0xf9, 0x0a, 0xb6, 0x16, 0x82, 0xdc,
+	0xaf, 0xd4, 0xcf, 0xe2, 0x2e, 0x1f, 0x83, 0x4a, 0xe9, 0xd3, 0xf8, 0xbb, 0xd9, 0xc0, 0xc7, 0xb1,
+	0xfc, 0xb7, 0xde, 0xfd, 0x0d, 0x00, 0x00, 0xff, 0xff, 0x98, 0xff, 0x8f, 0x15, 0x6c, 0x03, 0x00,
+	0x00,
 }

@@ -9,6 +9,7 @@ import "google/protobuf/timestamp.proto";
 service TodoService {
 	rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse);
 	rpc DeleteTodo(DeleteTodoRequest) returns (DeleteTodoResponse);
+	rpc CreateOwner(CreateOwnerRequest) returns (CreateOwnerResponse);
 }
 
 message Todo {
@@ -26,6 +27,12 @@ message Todo {
 	google.protobuf.Timestamp updated_at = 6;
 }
 
+message Owner {
+	uint64 id = 1;
+	string fistname = 2;
+	string lastname = 3;
+}
+
 message CreateTodoRequest {
 	Todo item = 1;
 }
@@ -39,4 +46,12 @@ message DeleteTodoRequest {
 }
 
 message DeleteTodoResponse {
+}
+
+message CreateOwnerRequest{
+	Owner owner = 1;
+}
+
+message CreateOwnerResponse {
+	uint64 id = 1;
 }
