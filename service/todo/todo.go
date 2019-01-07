@@ -34,7 +34,7 @@ func (s Service) DeleteTodo(ctx context.Context, req *todo.DeleteTodoRequest) (*
 }
 
 func (s Service) CreateOwner(ctx context.Context, req *todo.CreateOwnerRequest) (*todo.CreateOwnerResponse, error) {
-	err := s.DB.Insert("owner", req.Owner)
+	err := s.DB.Insert(req.Owner)
 	if err != nil {
 		return nil, grpc.Errorf(codes.Internal, "Could not create owner: %s", err)
 	}
