@@ -2,6 +2,7 @@ package todo
 
 import (
 	"context"
+	"log"
 
 	todo "github.com/JacobSMoller/go-todo/api/todo/v1"
 	"github.com/go-pg/pg"
@@ -37,6 +38,7 @@ func (s Service) CreateOwner(ctx context.Context, req *todo.CreateOwnerRequest) 
 	owner := &todo.Owner{
 		Firstname: req.Owner.Firstname,
 		Lastname:  req.Owner.Lastname}
+	log.Print(owner)
 	err := s.DB.Insert(owner)
 	if err != nil {
 		return nil, grpc.Errorf(codes.Internal, "Could not create owner: %s", err)
