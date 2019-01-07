@@ -29,7 +29,7 @@ message Todo {
 
 message Owner {
 	uint64 id = 1;
-	string fistname = 2;
+	string firstname = 2;
 	string lastname = 3;
 }
 
