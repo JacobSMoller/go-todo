@@ -26,7 +26,7 @@ func (s Service) CreateTodo(ctx context.Context, req *todo.CreateTodoRequest) (*
 }
 
 func (s Service) DeleteTodo(ctx context.Context, req *todo.DeleteTodoRequest) (*todo.DeleteTodoResponse, error) {
-	err := s.DB.Delete(req.Id)
+	err := s.DB.Delete(&todo.Todo{Id: req.Id})
 	if err != nil {
 		return nil, grpc.Errorf(codes.Internal, "Could not delete the item: %s", err)
 	}
