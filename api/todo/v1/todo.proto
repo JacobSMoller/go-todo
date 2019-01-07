@@ -7,8 +7,8 @@ option go_package = "todo";
 import "google/protobuf/timestamp.proto";
 
 service TodoService {
-	rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse) {}
-	rpc DeleteTodo(DeleteTodoRequest) returns (DeleteTodoResponse) {}
+	rpc CreateTodo(CreateTodoRequest) returns (CreateTodoResponse);
+	rpc DeleteTodo(DeleteTodoRequest) returns (DeleteTodoResponse);
 }
 
 message Todo {
@@ -39,5 +39,4 @@ message DeleteTodoRequest {
 }
 
 message DeleteTodoResponse {
-	uint64 id = 1;
 }
