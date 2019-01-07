@@ -17,13 +17,13 @@ message Todo {
 	string title = 2;
 	string description = 3;
 
-	// @inject_tag: sql:",notnull,default:false"
+	// @inject_tag: gorm:"not null;default:false"
 	bool completed = 4;
 
-	// @inject_tag: sql:"type:timestamptz,default:now()"
+	// @inject_tag: gorm:"type:timestamptz;default:now()"
 	google.protobuf.Timestamp created_at = 5;
 
-	// @inject_tag: sql:"type:timestamptz"
+	// @inject_tag: gorm:"type:timestamptz"
 	google.protobuf.Timestamp updated_at = 6;
 }
 

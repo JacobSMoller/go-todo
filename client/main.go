@@ -21,12 +21,6 @@ func main() {
 	}
 	defer conn.Close()
 	c := pb.NewTodoServiceClient(conn)
-
-	// Contact the server and print out its response.
-	// title := ""
-	// if len(os.Args) > 1 {
-	// 	title = os.Args[1]
-	// }
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
 	item := &pb.Todo{

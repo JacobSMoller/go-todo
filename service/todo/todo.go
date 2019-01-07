@@ -4,7 +4,7 @@ import (
 	"context"
 
 	todo "github.com/JacobSMoller/go-todo/api/todo/v1"
-	"github.com/go-pg/pg"
+	"github.com/jinzhu/gorm"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
@@ -13,12 +13,12 @@ import (
 // Service is the service dealing with storing
 // and retrieving todo items from the database.
 type Service struct {
-	DB *pg.DB
+	DB *gorm.DB
 }
 
 // CreateTodo creates a todo given a description
 func (s Service) CreateTodo(ctx context.Context, req *todo.CreateTodoRequest) (*todo.CreateTodoResponse, error) {
-	err := s.DB.Insert(req.Item)
+	err := s.DB.Create(req.Item)
 	if err != nil {
 		return nil, grpc.Errorf(codes.Internal, "Could not insert item into the database: %s", err)
 	}
@@ -26,7 +26,7 @@ func (s Service) CreateTodo(ctx context.Context, req *todo.CreateTodoRequest) (*
 }
 
 func (s Service) DeleteTodo(ctx context.Context, req *todo.DeleteTodoRequest) (*todo.DeleteTodoResponse, error) {
-	err := s.DB.Delete(&todo.Todo{Id: req.Id})
+	err := s.DB.Create(&todo.Todo{Id: req.Id})
 	if err != nil {
 		return nil, grpc.Errorf(codes.Internal, "Could not delete the item: %s", err)
 	}
@@ -34,7 +34,7 @@ func (s Service) DeleteTodo(ctx context.Context, req *todo.DeleteTodoRequest) (*
 }
 
 func (s Service) CreateOwner(ctx context.Context, req *todo.CreateOwnerRequest) (*todo.CreateOwnerResponse, error) {
-	err := s.DB.Insert(req.Owner)
+	err := s.DB.Create(req.Owner)
 	if err != nil {
 		return nil, grpc.Errorf(codes.Internal, "Could not create owner: %s", err)
 	}
