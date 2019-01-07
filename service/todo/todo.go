@@ -28,15 +28,15 @@ func (s Service) CreateTodo(ctx context.Context, req *todo.CreateTodoRequest) (*
 func (s Service) DeleteTodo(ctx context.Context, req *todo.DeleteTodoRequest) (*todo.DeleteTodoResponse, error) {
 	err := s.DB.Delete(&todo.Todo{Id: req.Id})
 	if err != nil {
-		return nil, grpc.Errorf(codes.Internal, "Could not deleteee the item: %s", err)
+		return nil, grpc.Errorf(codes.Internal, "Could not delete the item: %s", err)
 	}
 	return &todo.DeleteTodoResponse{}, nil
 }
 
 func (s Service) CreateOwner(ctx context.Context, req *todo.CreateOwnerRequest) (*todo.CreateOwnerResponse, error) {
-	err := s.DB.Insert(req.Owner)
+	err := s.DB.Insert("owner", req.Owner)
 	if err != nil {
-		return nil, grpc.Errorf(codes.Internal, "Could not deleteee the item: %s", err)
+		return nil, grpc.Errorf(codes.Internal, "Could not create owner: %s", err)
 	}
 	return &todo.CreateOwnerResponse{Id: req.Owner.Id}, nil
 }
