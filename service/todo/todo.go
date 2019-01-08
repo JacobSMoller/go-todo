@@ -2,6 +2,7 @@ package todo
 
 import (
 	"context"
+	"log"
 
 	todo "github.com/JacobSMoller/go-todo/api/todo/v1"
 	"github.com/jinzhu/gorm"
@@ -18,6 +19,7 @@ type Service struct {
 
 // CreateTodo creates a todo given a description
 func (s Service) CreateTodo(ctx context.Context, req *todo.CreateTodoRequest) (*todo.CreateTodoResponse, error) {
+	log.Print(req.Item.CreatedAt)
 	err := s.DB.Create(req.Item)
 	if err != nil {
 		return nil, grpc.Errorf(codes.Internal, "Could not insert item into the database: %s", err)
