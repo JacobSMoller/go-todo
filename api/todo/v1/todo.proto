@@ -22,7 +22,7 @@ message Todo {
 	// @inject_tag: gorm:"type:timestamptz;default:now()"
 	google.protobuf.Timestamp created_at = 5;
 
-	// @inject_tag: gorm:"type:timestamptz;omitempty"
+	// @inject_tag: gorm:"type:timestamptz;default:now()"
 	google.protobuf.Timestamp updated_at = 6;
 }
 
