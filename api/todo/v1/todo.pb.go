@@ -33,9 +33,9 @@ type Todo struct {
 	CreatedAt uint64 `protobuf:"varint,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty" gorm:"type:timestamptz;default:now()"`
 	// @inject_tag: gorm:"type:timestamptz"
 	UpdatedAt            uint64   `protobuf:"varint,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty" gorm:"type:timestamptz"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" gorm:"-"`
+	XXX_unrecognized     []byte   `json:"-" gorm:"-"`
+	XXX_sizecache        int32    `json:"-" gorm:"-"`
 }
 
 func (m *Todo) Reset()         { *m = Todo{} }
@@ -108,9 +108,9 @@ type Owner struct {
 	Id                   uint64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 	Firstname            string   `protobuf:"bytes,2,opt,name=firstname,proto3" json:"firstname,omitempty"`
 	Lastname             string   `protobuf:"bytes,3,opt,name=lastname,proto3" json:"lastname,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" gorm:"-"`
+	XXX_unrecognized     []byte   `json:"-" gorm:"-"`
+	XXX_sizecache        int32    `json:"-" gorm:"-"`
 }
 
 func (m *Owner) Reset()         { *m = Owner{} }
@@ -160,9 +160,9 @@ func (m *Owner) GetLastname() string {
 
 type CreateTodoRequest struct {
 	Item                 *Todo    `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" gorm:"-"`
+	XXX_unrecognized     []byte   `json:"-" gorm:"-"`
+	XXX_sizecache        int32    `json:"-" gorm:"-"`
 }
 
 func (m *CreateTodoRequest) Reset()         { *m = CreateTodoRequest{} }
@@ -198,9 +198,9 @@ func (m *CreateTodoRequest) GetItem() *Todo {
 
 type CreateTodoResponse struct {
 	Id                   uint64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" gorm:"-"`
+	XXX_unrecognized     []byte   `json:"-" gorm:"-"`
+	XXX_sizecache        int32    `json:"-" gorm:"-"`
 }
 
 func (m *CreateTodoResponse) Reset()         { *m = CreateTodoResponse{} }
@@ -236,9 +236,9 @@ func (m *CreateTodoResponse) GetId() uint64 {
 
 type DeleteTodoRequest struct {
 	Id                   uint64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" gorm:"-"`
+	XXX_unrecognized     []byte   `json:"-" gorm:"-"`
+	XXX_sizecache        int32    `json:"-" gorm:"-"`
 }
 
 func (m *DeleteTodoRequest) Reset()         { *m = DeleteTodoRequest{} }
@@ -273,9 +273,9 @@ func (m *DeleteTodoRequest) GetId() uint64 {
 }
 
 type DeleteTodoResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" gorm:"-"`
+	XXX_unrecognized     []byte   `json:"-" gorm:"-"`
+	XXX_sizecache        int32    `json:"-" gorm:"-"`
 }
 
 func (m *DeleteTodoResponse) Reset()         { *m = DeleteTodoResponse{} }
@@ -304,9 +304,9 @@ var xxx_messageInfo_DeleteTodoResponse proto.InternalMessageInfo
 
 type CreateOwnerRequest struct {
 	Owner                *Owner   `protobuf:"bytes,1,opt,name=owner,proto3" json:"owner,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" gorm:"-"`
+	XXX_unrecognized     []byte   `json:"-" gorm:"-"`
+	XXX_sizecache        int32    `json:"-" gorm:"-"`
 }
 
 func (m *CreateOwnerRequest) Reset()         { *m = CreateOwnerRequest{} }
@@ -342,9 +342,9 @@ func (m *CreateOwnerRequest) GetOwner() *Owner {
 
 type CreateOwnerResponse struct {
 	Id                   uint64   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" gorm:"-"`
+	XXX_unrecognized     []byte   `json:"-" gorm:"-"`
+	XXX_sizecache        int32    `json:"-" gorm:"-"`
 }
 
 func (m *CreateOwnerResponse) Reset()         { *m = CreateOwnerResponse{} }
