@@ -15,14 +15,8 @@ message Todo {
 	uint64 id = 1;
 	string title = 2;
 	string description = 3;
-
-	// @inject_tag: gorm:"not null;default:false"
 	bool completed = 4;
-
-	// @inject_tag: gorm:"type:timestamptz;default:now()"
 	google.protobuf.Timestamp created_at = 5;
-
-	// @inject_tag: gorm:"type:timestamptz;default:now()"
 	google.protobuf.Timestamp updated_at = 6;
 }
 
