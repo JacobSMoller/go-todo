@@ -60,4 +60,5 @@ func main() {
 	// log.Printf("Created owner with id: %d", r.Id)
 
 	req := &pb.GetTodoRequest{Id: 1}
+
 }
