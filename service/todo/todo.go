@@ -2,6 +2,7 @@ package todo
 
 import (
 	"context"
+	"log"
 	"time"
 
 	todo "github.com/JacobSMoller/go-todo/api/todo/v1"
@@ -91,6 +92,22 @@ func (s Service) GetTodo(ctx context.Context, req *todo.GetTodoRequest) (*todo.G
 		Description: dbitem.Description,
 		CreatedAt:   created_at,
 		UpdatedAt:   updated_at,
+	}
+	return &todo.GetTodoResponse{Item: &item}, nil
+}
+
+// GetTodos retrieves a todo item from its ID
+func (s Service) GetTodos(ctx context.Context, req *todo.GetTodosRequest) (*todo.GetTodoResponse, error) {
+	var dbitems []*DbItem
+	result := s.DB.Table("todo").Find(&dbitems)
+	if result.Error != nil {
+		return nil, grpc.Errorf(codes.NotFound, "Could not retrieve item from the database: %s", result.Error)
+	}
+	log.Print(dbitems)
+	item := todo.Todo{
+		Id:          1,
+		Title:       "Foo",
+		Description: "Blah",
 	}
 	return &todo.GetTodoResponse{Item: &item}, nil
 }
