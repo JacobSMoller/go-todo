@@ -48,12 +48,12 @@ func main() {
 		log.Printf("Deleted todo with id: %d", del_req.Id)
 	}
 
-	if os.Args[1] == strings.ToLower("select") {
-		req := &pb.GetTodoRequest{Id: 2}
-		r, err := c.GetTodo(ctx, req)
+	if os.Args[1] == strings.ToLower("selectall") {
+		req := &pb.GetTodosRequest{}
+		r, err := c.GetTodos(ctx, req)
 		if err != nil {
-			log.Fatalf("Could not retrive item with id: %d %v", req.Id, err)
+			log.Fatalf("Failed to execute SELECT * FROM todo: %v", err)
 		}
-		log.Printf("Found todo: %v", r.Item)
+		log.Printf("Found todos: %v", r.Item)
 	}
 }

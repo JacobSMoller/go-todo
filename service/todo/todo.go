@@ -2,7 +2,6 @@ package todo
 
 import (
 	"context"
-	"log"
 	"time"
 
 	todo "github.com/JacobSMoller/go-todo/api/todo/v1"
@@ -29,21 +28,20 @@ type DbItem struct {
 
 // CreateTodo creates a todo given a description
 func (s Service) CreateTodo(ctx context.Context, req *todo.CreateTodoRequest) (*todo.CreateTodoResponse, error) {
-	// Convert proto timestamps to time.Time
-	db_created_at, err := ptypes.Timestamp(req.Item.CreatedAt)
-	if err != nil {
-		return nil, grpc.Errorf(codes.Internal, "Could not insert item into the database, failed to convert proto timestamp to Time: %v", err)
-	}
-	db_updated_at, err := ptypes.Timestamp(req.Item.UpdatedAt)
-	if err != nil {
-		return nil, grpc.Errorf(codes.Internal, "Could not insert item into the database, failed to convert proto timestamp to Time: %v", err)
-	}
+	// Convert proto timestamps to time.Time TODO(JS): Figure out how to handle cases where they are not present.
+	// db_created_at, err := ptypes.Timestamp(req.Item.CreatedAt)
+	// log.Print(err)
+	// if err != nil {
+	// 	return nil, grpc.Errorf(codes.Internal, "Could not insert item into the database, failed to convert proto timestamp to Time: %v", err)
+	// }
+	// db_updated_at, err := ptypes.Timestamp(req.Item.UpdatedAt)
+	// if err != nil {
+	// 	return nil, grpc.Errorf(codes.Internal, "Could not insert item into the database, failed to convert proto timestamp to Time: %v", err)
+	// }
 
 	dbitem := DbItem{
 		Title:       req.Item.Title,
 		Description: req.Item.Description,
-		CreatedAt:   db_created_at,
-		UpdatedAt:   db_updated_at,
 	}
 	result := s.DB.Table("todo").Create(&dbitem)
 	if result.Error != nil {
@@ -96,18 +94,31 @@ func (s Service) GetTodo(ctx context.Context, req *todo.GetTodoRequest) (*todo.G
 	return &todo.GetTodoResponse{Item: &item}, nil
 }
 
-// GetTodos retrieves a todo item from its ID
-func (s Service) GetTodos(ctx context.Context, req *todo.GetTodosRequest) (*todo.GetTodoResponse, error) {
+// GetTodos retrieves all todo items.
+func (s Service) GetTodos(ctx context.Context, req *todo.GetTodosRequest) (*todo.GetTodosResponse, error) {
 	var dbitems []*DbItem
 	result := s.DB.Table("todo").Find(&dbitems)
 	if result.Error != nil {
 		return nil, grpc.Errorf(codes.NotFound, "Could not retrieve item from the database: %s", result.Error)
 	}
-	log.Print(dbitems)
-	item := todo.Todo{
-		Id:          1,
-		Title:       "Foo",
-		Description: "Blah",
+	var items []*todo.Todo
+	for _, dbitem := range dbitems {
+		created_at, err := ptypes.TimestampProto(dbitem.CreatedAt)
+		if err != nil {
+			return nil, grpc.Errorf(codes.Internal, "Could not retrieve item from the database failed to convert CreatedAt to proto timestmap : %v", err)
+		}
+		updated_at, err := ptypes.TimestampProto(dbitem.CreatedAt)
+		if err != nil {
+			return nil, grpc.Errorf(codes.Internal, "Could not retrieve item from the database failed to convert UpdatedAt to proto timestmap : %v", err)
+		}
+		item := todo.Todo{
+			Id:          dbitem.Id,
+			Title:       dbitem.Title,
+			Description: dbitem.Description,
+			CreatedAt:   created_at,
+			UpdatedAt:   updated_at,
+		}
+		items = append(items, &item)
 	}
-	return &todo.GetTodoResponse{Item: &item}, nil
+	return &todo.GetTodosResponse{Items: items}, nil
 }

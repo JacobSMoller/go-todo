@@ -10,7 +10,7 @@ service TodoService {
 	rpc DeleteTodo(DeleteTodoRequest) returns (DeleteTodoResponse);
 	rpc CreateOwner(CreateOwnerRequest) returns (CreateOwnerResponse);
 	rpc GetTodo(GetTodoRequest) returns (GetTodoResponse);
-	rpc GetTodos(GetTodosRequest) returns (GetTodoResponse);
+	rpc GetTodos(GetTodosRequest) returns (GetTodosResponse);
 }
 
 message Todo {
