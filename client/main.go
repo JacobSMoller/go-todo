@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"log"
+	"os"
+	"strings"
 	"time"
 
 	pb "github.com/JacobSMoller/go-todo/api/todo/v1"
@@ -23,42 +25,35 @@ func main() {
 	c := pb.NewTodoServiceClient(conn)
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	// future_time, err := time.Parse(time.RFC3339, "2020-01-10T10:44:00+00:00")
-	// if err != nil {
-	// 	log.Fatalf("Failed to parse future time %v", err)
-	// }
-	// proto_future_time, err := ptypes.TimestampProto(future_time)
-	// item := &pb.Todo{
-	// 	Title:       "Foo task",
-	// 	Description: "A task created from my client",
-	// 	CreatedAt:   proto_future_time,
-	// }
-	// req := &pb.CreateTodoRequest{Item: item}
-	// r, err := c.CreateTodo(ctx, req)
-	// if err != nil {
-	// 	log.Fatalf("Could not create item %v", err)
-	// }
-	// log.Printf("Created todo with id: %d", r.Id)
+	if os.Args[1] == strings.ToLower("create") {
+		item := &pb.Todo{
+			Title:       "My Foo task",
+			Description: "A task created from my client",
+		}
+		req := &pb.CreateTodoRequest{Item: item}
+		r, err := c.CreateTodo(ctx, req)
+		if err != nil {
+			log.Fatalf("Could not create item %v", err)
+		}
+		log.Printf("Created todo with id: %d", r.Id)
+	}
 
-	// del_req := &pb.DeleteTodoRequest{Id: 4}
-	// del_res, err := c.DeleteTodo(ctx, del_req)
-	// if err != nil {
-	// 	log.Fatalf("Could not create item %v", err)
-	// }
-	// log.Println(del_res)
-	// log.Printf("Deleted todo with id: %d", del_req.Id)
+	if os.Args[1] == strings.ToLower("delete") {
+		del_req := &pb.DeleteTodoRequest{Id: 1}
+		del_res, err := c.DeleteTodo(ctx, del_req)
+		if err != nil {
+			log.Fatalf("Could not create item %v", err)
+		}
+		log.Println(del_res)
+		log.Printf("Deleted todo with id: %d", del_req.Id)
+	}
 
-	// owner := &pb.Owner{
-	// 	Firstname: "John",
-	// 	Lastname:  "Doe",
-	// }
-	// req := &pb.CreateOwnerRequest{Owner: owner}
-	// r, err := c.CreateOwner(ctx, req)
-	// if err != nil {
-	// 	log.Fatalf("Could not create item %v", err)
-	// }
-	// log.Printf("Created owner with id: %d", r.Id)
-
-	req := &pb.GetTodoRequest{Id: 1}
-
+	if os.Args[1] == strings.ToLower("select") {
+		req := &pb.GetTodoRequest{Id: 2}
+		r, err := c.GetTodo(ctx, req)
+		if err != nil {
+			log.Fatalf("Could not retrive item with id: %d %v", req.Id, err)
+		}
+		log.Printf("Found todo: %v", r.Item)
+	}
 }
