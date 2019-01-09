@@ -57,3 +57,10 @@ message GetTodoRequest {
 message GetTodoResponse {
 	Todo item = 1;
 }
+
+message GetTodosRequest {
+}
+
+message GetTodosResponse {
+	repeated Todo items = 1;
+}

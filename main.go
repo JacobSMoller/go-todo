@@ -28,24 +28,11 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-
-	// gopg Connect to PostgreSQL
-	// db := pg.Connect(&pg.Options{
-	// 	User:                  "postgres",
-	// 	Password:              "mysecretpassword",
-	// 	Database:              "todo",
-	// 	Addr:                  "127.0.0.1:5432",
-	// 	RetryStatementTimeout: true,
-	// 	MaxRetries:            4,
-	// 	MinRetryBackoff:       250 * time.Millisecond,
-	// })
-	// db.CreateTable(&pb.Todo{}, nil)
-	// db.CreateTable(&pb.Owner{}, nil)
-
-	//gorm connect to Postgres
+	//Connect to database
 	db, err := gorm.Open(
 		"postgres",
 		"host=localhost port=5432 user=postgres dbname=todo password=mysecretpassword sslmode=disable")
+	//close db at end of this function
 	defer db.Close()
 	// Setup a grpc server
 	server := grpc.NewServer()
