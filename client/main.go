@@ -54,6 +54,6 @@ func main() {
 		if err != nil {
 			log.Fatalf("Failed to execute SELECT * FROM todo: %v", err)
 		}
-		log.Printf("Found todos: %v", r.Item)
+		log.Printf("Found todos: %v", r.Items)
 	}
 }
